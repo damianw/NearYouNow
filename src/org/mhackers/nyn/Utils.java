@@ -8,6 +8,7 @@ import android.location.Location;
 import com.cartodb.CartoDBClientIF;
 import com.cartodb.CartoDBException;
 import com.cartodb.model.CartoDBResponse;
+import com.google.gson.JsonPrimitive;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +42,7 @@ public abstract class Utils {
         if (res == null){
             System.out.println("There is nothing in the table");
         }
-        //12070 meters is roughly five miles
-        /*List<Map<String, Object>> rows = res.getRows();
-        for (Map map: rows){
-            result.add(map);
-        }*/
+        
         System.out.println(res.getTotal_rows());
         return res;
     }
@@ -54,13 +51,13 @@ public abstract class Utils {
         ArrayList<Listing> result = null;
         CartoDBResponse<Map<String, Object>> res = getListingsQuery(location, client);
         List<Map<String, Object>> rows = res.getRows();
-        /*for (int i = 0; i <= ){
-            System.out.println("getting map");
-            Object get = map.get("location");
-            System.out.println(get.getClass());
-            //Listing listing = new Listing((String)map.get("name"), (String)map.get("price"), );
-            //result.add();
-        }*/
+        for (Map<String, Object> map: rows){
+            /*String geom = (String) map.get("the_geom");
+            Object shit = new org.json.
+            JsonPrimitive loc = (JsonPrimitive)shit;
+            System.out.println("niggers " + loc.getAsJsonArray().get(0));*/
+        }
+        
         return result;
     }
 }

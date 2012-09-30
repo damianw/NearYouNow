@@ -1,0 +1,24 @@
+/Users/damian/Desktop/new2/NearYouNow/bin/classes.dex : \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/BuildConfig.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/GetItFragment.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/Listing.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/ListingArrayAdapter.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/ListingInfoFragment$1.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/ListingInfoFragment$2.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/ListingInfoFragment.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/ListingListFragment$1.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/ListingListFragment$GetListings.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/ListingListFragment.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/MainActivity.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/R$attr.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/R$drawable.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/R$id.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/R$layout.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/R$string.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/R.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/RequestListFragment.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/TabListener.class \
+/Users/damian/Desktop/new2/NearYouNow/bin/classes/org/mhackers/nyn/Utils.class \
+/Users/damian/Desktop/new2/NearYouNow/libs/cartodb-java-client.jar \
+/Users/damian/Development/android-sdk-macosx/tools/support/annotations.jar \
+/Users/damian/Desktop/new2/NearYouNow/libs/gson-2.2.2.jar \

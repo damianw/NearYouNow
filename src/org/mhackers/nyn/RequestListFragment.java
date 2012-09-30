@@ -52,7 +52,7 @@ public class RequestListFragment extends ListFragment {
         //System.out.println(myAverageRatings.size());
         //calculateAverages();
         myAdapter = new ListingArrayAdapter(
-                getView().getContext(), R.layout.listings_listitem, myListings);
+                getView().getContext(), R.layout.listing_listitem, myListings);
         //if (myAverageRatings != null) {
         setListAdapter(myAdapter);
         //}

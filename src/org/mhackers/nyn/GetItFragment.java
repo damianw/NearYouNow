@@ -157,18 +157,7 @@ public class GetItFragment extends DialogFragment {
     }
 
     private String uploadFile(File myFile, String id, String mime) {
-        try {
-            CMFile file = new CMFile(new FileInputStream(myFile), id, mime);
-            file.save(new FileCreationResponseCallback() {
-                public void onCompletion(FileCreationResponse response) {
-                    System.out.println("all done?: " + response.wasSuccess());
-                }
-            });
-            return file.getObjectId();
-        } catch (FileNotFoundException ex) {
-            System.err.println("whyyyy");
-            Logger.getLogger(CheckInFragment.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         return "";
     }
 

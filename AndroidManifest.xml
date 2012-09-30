@@ -15,10 +15,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PartyListActivity" android:label="PartyListActivity"/>
-        <activity android:name=".FriendtActivity" android:label="FriendListActivity"/>
-        <activity android:name=".CheckInActivity" android:label="CheckInActivity"/>
-        <activity android:name=".PartyInfoActivity" android:label="PartyInfoActivity"/>
     </application>
     <uses-feature android:name="android.hardware.camera" />
     <uses-permission android:name="android.permission.INTERNET" /> 

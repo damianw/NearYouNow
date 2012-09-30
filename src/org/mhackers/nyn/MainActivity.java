@@ -34,7 +34,7 @@ public class MainActivity extends Activity implements LocationListener
     private LocationManager locationManager;
     private Location myLocation;
     private String provider;
-    private TabListener<ListingListFragment> listingListener;
+    TabListener<ListingListFragment> listingListener;
     private final String CARTO_API_KEY = "71396cdae0d97a3b4f1f1618f6e6d0dc9f53e684";
     private ActionBar actionBar;
     private ListingListFragment myListingFrag;
@@ -106,11 +106,6 @@ public class MainActivity extends Activity implements LocationListener
         CartoDBClientIF cartoDBCLient = null;
         try {
             cartoDBCLient = new ApiKeyCartoDBClient("lucaspa@umich.edu", CARTO_API_KEY);
-        } catch (CartoDBException ex) {
-            Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            System.out.println(cartoDBCLient.executeQuery("UPDATE yourtable SET yourvalue = 'test' WHERE yourid = 1"));
         } catch (CartoDBException ex) {
             Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
         }

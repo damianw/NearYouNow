@@ -45,18 +45,18 @@ public class MainActivity extends Activity implements LocationListener
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        initLocation();
-        initCartoDB();
-        initTabs();
         actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayShowTitleEnabled(false);
+        initTabs();
+        initLocation();
+        initCartoDB();
     }
 
     @Override
     public void onLocationChanged(Location location) {
         myLocation = location;
-        
+        myListingFrag.updateLocation(location);
     }
 
     public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -89,7 +89,6 @@ public class MainActivity extends Activity implements LocationListener
     private void initTabs() {
         listingListener = new TabListener<ListingListFragment>(
                 this, "listinglist", ListingListFragment.class);
-
         ActionBar.Tab tab = actionBar.newTab()
                 .setText("Listings")
                 .setTabListener(listingListener);

@@ -44,6 +44,9 @@ public class ListingListFragment extends ListFragment {
     }
 
     public void updateLocation(Location location) {
+        double lat = (location.getLatitude());
+        double lng = (location.getLongitude());
+        myLocation = location;
         
     }
 

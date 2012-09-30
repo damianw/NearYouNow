@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public abstract class Utils {
 
-    public CartoDBResponse<Map<String, Object>> makeQuery(String query, CartoDBClientIF client){
+    public static CartoDBResponse<Map<String, Object>> makeQuery(String query, CartoDBClientIF client){
         CartoDBResponse<Map<String, Object>> res = null;
         try {
             res = client.request(query);
@@ -31,14 +31,26 @@ public abstract class Utils {
         return res;
     }
     
-    public ArrayList<Listing> getListings(Location location, CartoDBClientIF client){
-        ArrayList<Listing> result = null;
+    public static List<Map<String, Object>> getListingsQuery(Location location, CartoDBClientIF client){
+        ArrayList<Map<String, Object>> result = null;
         CartoDBResponse<Map<String, Object>> res = makeQuery("SELECT * FROM table WHERE ST_DWithin(ST_GeogFromText('SRID=4326;POINT(" + location.getLatitude() + "," + location.getLongitude() + ")'), geography(latlon), 12070)", client);
         //12070 meters is roughly five miles
-        List<Map<String, Object>> rows = res.getRows();
+        /*List<Map<String, Object>> rows = res.getRows();
         for (Map map: rows){
-            
-        }
+            result.add(map);
+        }*/
+        return res.getRows();
+    }
+    
+    public static ArrayList<Listing> getListings(Location location, CartoDBClientIF client){
+        ArrayList<Listing> result = null;
+        List<Map<String, Object>> res = getListingsQuery(location, client);
+        /*for (Map<String, Object> map: res){
+            Location loc = map.get("location");
+            Listing listing = new Listing((String)map.get("name"), (String)map.get("price"), );
+            result.add();
+        }*/
+        return result;
     }
 }
 

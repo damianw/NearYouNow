@@ -79,24 +79,20 @@ public class ListingListFragment extends ListFragment {
 
 
     }
-    
-    private class GetListings extends AsyncTask {
+
+    /*private class GetListings extends AsyncTask {
+
         @Override
-        protected ArrayList<Listing> doInBackground(String query, CartoDBClientIF client) {
-              
+        protected List<Map<String, Object>> doInBackground(String query, CartoDBClientIF client) {
+
             // params comes from the execute() call: params[0] is the url.
-            try {
-                return Utils.getListings(query, client);
-            } catch (IOException e) {
-                return "Unable to retrieve web page. URL may be invalid.";
-            }
+            return Utils.getListings(myLocation, client);
         }
         // onPostExecute displays the results of the AsyncTask.
-        @Override
-        protected void onPostExecute(String result) {
-            textView.setText(result);
-       }
 
-        
-    }
+        @Override
+        protected void onPostExecute(List<Map<String, Object>> result) {
+            textView.setText(result);
+        }
+    }*/
 }

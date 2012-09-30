@@ -38,6 +38,7 @@ public class MainActivity extends Activity implements LocationListener
     private final String CARTO_API_KEY = "71396cdae0d97a3b4f1f1618f6e6d0dc9f53e684";
     private ActionBar actionBar;
     private ListingListFragment myListingFrag;
+    CartoDBClientIF myClient;
     
     /** Called when the activity is first created. */
     @Override
@@ -48,15 +49,15 @@ public class MainActivity extends Activity implements LocationListener
         actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayShowTitleEnabled(false);
+        initCartoDB();
         initTabs();
         initLocation();
-        initCartoDB();
     }
 
     @Override
     public void onLocationChanged(Location location) {
         myLocation = location;
-        myListingFrag.updateLocation(location);
+        myListingFrag.updateLocation(location, myClient);
     }
 
     public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -102,9 +103,9 @@ public class MainActivity extends Activity implements LocationListener
     }
 
     private void initCartoDB() {
-        CartoDBClientIF cartoDBCLient = null;
+        myClient = null;
         try {
-            cartoDBCLient = new ApiKeyCartoDBClient("lucaspa@umich.edu", CARTO_API_KEY);
+            myClient = new ApiKeyCartoDBClient("lucaspa@umich.edu", CARTO_API_KEY);
         } catch (CartoDBException ex) {
             Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
         }

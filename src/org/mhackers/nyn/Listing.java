@@ -15,15 +15,17 @@ public class Listing {
     private String name;
     private Location location;
     private double price;
+    String fbid;
     private String description;
     private ArrayList<String> tags;
     
-    public Listing(String name, Location location, double price, String description, ArrayList<String> tags){
+    public Listing(String name, Location location, double price, String description, ArrayList<String> tags, String fbid){
         this.name = name;
         this.location = location;
         this.price = price;
         this.description = description;
         this.tags = tags;
+        this.fbid = fbid;
     }
 
     public String getName() {

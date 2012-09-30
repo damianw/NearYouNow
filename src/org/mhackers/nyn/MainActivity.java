@@ -100,6 +100,7 @@ public class MainActivity extends Activity implements LocationListener
                 this, "requestlist", RequestListFragment.class));
         actionBar.addTab(tab);
         myListingFrag = (ListingListFragment)listingListener.getFragment();
+        myListingFrag.setClient(myClient);
     }
 
     private void initCartoDB() {

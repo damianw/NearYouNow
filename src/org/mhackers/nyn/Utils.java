@@ -45,11 +45,11 @@ public abstract class Utils {
     public static ArrayList<Listing> getListings(Location location, CartoDBClientIF client){
         ArrayList<Listing> result = null;
         List<Map<String, Object>> res = getListingsQuery(location, client);
-        /*for (Map<String, Object> map: res){
-            Location loc = map.get("location");
-            Listing listing = new Listing((String)map.get("name"), (String)map.get("price"), );
-            result.add();
-        }*/
+        for (Map<String, Object> map: res){
+            System.out.println(map.get("location").getClass());
+            //Listing listing = new Listing((String)map.get("name"), (String)map.get("price"), );
+            //result.add();
+        }
         return result;
     }
 }

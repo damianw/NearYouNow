@@ -33,7 +33,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
             ft.add(android.R.id.content, mFragment, mTag);
         } else {
             // If it exists, simply attach it in order to show it
-            System.out.println(mFragment.getClass());
+            //System.out.println(mFragment.getClass());
             ft.attach(mFragment);
         }
     }

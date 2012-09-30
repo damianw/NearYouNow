@@ -29,7 +29,8 @@ public class ListingListFragment extends ListFragment {
     private Location myLocation;
     private String provider;
     private ArrayList<Listing> myListings;
-
+    private CartoDBClientIF myClient = null;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +55,7 @@ public class ListingListFragment extends ListFragment {
         double lat = (location.getLatitude());
         double lng = (location.getLongitude());
         myLocation = location;
-        CartoDBResponse<Map<String, Object>> res = null;
-        try {
-            res = client.request("select * from mytable limit 1");
-        } catch (CartoDBException ex) {
-            Logger.getLogger(ListingListFragment.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.print(res.getTotal_rows());
-        System.out.print(res.getRows().get(0).get("cartodb_id"));
+        new GetListings().execute(client);
     }
 
     public void updateList() {
@@ -80,19 +74,24 @@ public class ListingListFragment extends ListFragment {
 
     }
 
-    /*private class GetListings extends AsyncTask {
+    private class GetListings extends AsyncTask {
 
         @Override
-        protected List<Map<String, Object>> doInBackground(String query, CartoDBClientIF client) {
+        protected ArrayList<Listing> doInBackground(Object... params) {
 
             // params comes from the execute() call: params[0] is the url.
-            return Utils.getListings(myLocation, client);
+            System.out.println("shitiiitt");
+            return Utils.getListings(myLocation, (CartoDBClientIF)params[0]);
         }
         // onPostExecute displays the results of the AsyncTask.
 
         @Override
-        protected void onPostExecute(List<Map<String, Object>> result) {
-            textView.setText(result);
+        protected void onPostExecute(Object result) {
+            
         }
-    }*/
+    }
+    
+    public void setClient(CartoDBClientIF client){
+        myClient = client;
+    }
 }

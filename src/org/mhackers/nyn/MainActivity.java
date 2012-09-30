@@ -1,33 +1,26 @@
 package org.mhackers.nyn;
 
-import android.app.*;
-import android.app.ActionBar.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import android.app.ActionBar;
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.*;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.SeekBar;
-import android.widget.Toast;
-import java.util.ArrayList;
-import java.util.List;
-import android.widget.ListView;
-import android.widget.TextView;
-import com.cartodb.*;
-import com.cartodb.impl.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import com.cartodb.CartoDBClientIF;
+import com.cartodb.CartoDBException;
+import com.cartodb.impl.ApiKeyCartoDBClient;
+
+import com.facebook.android.*;
+import com.facebook.android.Facebook.*;
+
+
 
 public class MainActivity extends Activity implements LocationListener
 {
@@ -39,6 +32,9 @@ public class MainActivity extends Activity implements LocationListener
     private ActionBar actionBar;
     private ListingListFragment myListingFrag;
     CartoDBClientIF myClient;
+    
+    Facebook facebook = new Facebook("119417031495455");
+
     
     /** Called when the activity is first created. */
     @Override
@@ -52,6 +48,29 @@ public class MainActivity extends Activity implements LocationListener
         initCartoDB();
         initTabs();
         initLocation();
+        
+        facebook.authorize(this, new DialogListener() {
+            @Override
+            public void onComplete(Bundle values) {}
+
+            @Override
+            public void onFacebookError(FacebookError error) {}
+
+            @Override
+            public void onError(DialogError e) {}
+
+            @Override
+            public void onCancel() {}
+        });
+
+        
+    }
+    
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        facebook.authorizeCallback(requestCode, resultCode, data);
     }
 
     @Override

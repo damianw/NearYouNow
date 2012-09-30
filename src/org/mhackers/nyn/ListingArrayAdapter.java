@@ -14,29 +14,28 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class SellingArrayAdapter extends ArrayAdapter<Listing> {
-	private static final String tag = "SellingArrayAdapter";
+public class ListingArrayAdapter extends ArrayAdapter<Listing> {
+	private static final String tag = "ListingArrayAdapter";
 	private static final String ASSETS_DIR = "images/";
 	private Context context;
-	private ImageView partyIcon;
-	private TextView partyName;
-	private TextView partyRating;
-        private TextView partyRatio;
-	private List<Party> parties = new ArrayList<Party>();
+	private ImageView listingIcon;
+	private TextView listingName;
+	private String[] comments;
+	private List<Listing> listings = new ArrayList<Listing>();
 
-	public SellingArrayAdapter(Context context, int textViewResourceId,
-			List<Party> objects) {
+	public ListingArrayAdapter(Context context, int textViewResourceId,
+			List<Listing> objects) {
 		super(context, textViewResourceId, objects);
 		this.context = context;
-		this.parties = objects;
+		this.listings = objects;
 	}
 
 	public int getCount() {
-		return this.parties.size();
+		return this.listings.size();
 	}
 
-	public Party getItem(int index) {
-		return this.parties.get(index);
+	public Listing getItem(int index) {
+		return this.listings.get(index);
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -46,12 +45,12 @@ public class SellingArrayAdapter extends ArrayAdapter<Listing> {
 			Log.d(tag, "Starting XML Row Inflation ... ");
 			LayoutInflater inflater = (LayoutInflater) this.getContext()
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			row = inflater.inflate(R.layout.party_listitem, parent, false);
+			row = inflater.inflate(R.layout.listing_listitem, parent, false);
 			Log.d(tag, "Successfully completed XML Row Inflation!");
 		}
 
 		// Get item
-		Party party = getItem(position);
+		/*Party party = getItem(position);
                 //AverageRating rating = myAverageRatings.get(position);
 		
 		// Get reference to ImageView 
@@ -75,7 +74,7 @@ public class SellingArrayAdapter extends ArrayAdapter<Listing> {
 			partyIcon.setImageBitmap(bitmap);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}*/
+		}
 		
 		// Set party ratingiation
 		partyRating.setText("Rating: " + party.getOvrating());
@@ -98,7 +97,7 @@ public class SellingArrayAdapter extends ArrayAdapter<Listing> {
                 }
                 else if (partyType.equals("Wine")){
                     partyIcon.setImageResource(R.drawable.wine);
-                }
+                }*/
                 
                 
                 //FIX THIS SHIT
@@ -106,8 +105,4 @@ public class SellingArrayAdapter extends ArrayAdapter<Listing> {
 		return row;
 	}
         
-        public void setRating(int id, int rating, int ratio){
-            partyRating.setText("Rating: " + rating);
-            partyRatio.setText("Ratio: " + ratio);
-        }
 }

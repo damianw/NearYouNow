@@ -1,26 +1,56 @@
 package org.mhackers.nyn;
 
-import android.app.ActionBar;
-import android.app.ActionBar.TabListener;
+import android.app.*;
+import android.app.ActionBar.*;
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.*;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.List;
+import android.widget.ListView;
+import android.widget.TextView;
+import com.cartodb.*;
+import com.cartodb.impl.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainActivity extends Activity implements LocationListener
 {
     private LocationManager locationManager;
     private Location myLocation;
     private String provider;
+    private TabListener<ListingListFragment> listingListener;
+    private final String CARTO_API_KEY = "71396cdae0d97a3b4f1f1618f6e6d0dc9f53e684";
+    private ActionBar actionBar;
+    private ListingListFragment myListingFrag;
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        initLocation();
+        initCartoDB();
+        initTabs();
+        actionBar = getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayShowTitleEnabled(false);
     }
 
     @Override
@@ -57,19 +87,32 @@ public class MainActivity extends Activity implements LocationListener
     }
     
     private void initTabs() {
-        partyListener = new TabListener<PartyListFragment>(
-                this, "partylist", PartyListFragment.class);
+        listingListener = new TabListener<ListingListFragment>(
+                this, "listinglist", ListingListFragment.class);
 
         ActionBar.Tab tab = actionBar.newTab()
-                .setText("Parties")
-                .setTabListener(partyListener);
+                .setText("Listings")
+                .setTabListener(listingListener);
         actionBar.addTab(tab);
         tab = actionBar.newTab()
-                .setText("Friends")
-                .setTabListener(new TabListener<FriendListFragment>(
-                this, "friendlist", FriendListFragment.class));
+                .setText("Requests")
+                .setTabListener(new TabListener<RequestListFragment>(
+                this, "requestlist", RequestListFragment.class));
         actionBar.addTab(tab);
-        myPartyFrag = (PartyListFragment)partyListener.getFragment();
-        myStore = CMStore.getStore();
+        myListingFrag = (ListingListFragment)listingListener.getFragment();
+    }
+
+    private void initCartoDB() {
+        CartoDBClientIF cartoDBCLient = null;
+        try {
+            cartoDBCLient = new ApiKeyCartoDBClient("lucaspa@umich.edu", CARTO_API_KEY);
+        } catch (CartoDBException ex) {
+            Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            System.out.println(cartoDBCLient.executeQuery("UPDATE yourtable SET yourvalue = 'test' WHERE yourid = 1"));
+        } catch (CartoDBException ex) {
+            Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -106,7 +106,7 @@ public class MainActivity extends Activity implements LocationListener
     private void initCartoDB() {
         myClient = null;
         try {
-            myClient = new ApiKeyCartoDBClient("lucaspa@umich.edu", CARTO_API_KEY);
+            myClient = new ApiKeyCartoDBClient("hmbp", CARTO_API_KEY);
         } catch (CartoDBException ex) {
             Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
         }

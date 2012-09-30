@@ -27,26 +27,37 @@ public abstract class Utils {
             res = client.request(query);
         } catch (CartoDBException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.toString());
+            ex.printStackTrace();
+            System.err.println(ex);
         }
         return res;
     }
     
-    public static List<Map<String, Object>> getListingsQuery(Location location, CartoDBClientIF client){
+    public static CartoDBResponse<Map<String, Object>> getListingsQuery(Location location, CartoDBClientIF client){
         ArrayList<Map<String, Object>> result = null;
-        CartoDBResponse<Map<String, Object>> res = makeQuery("SELECT * FROM table WHERE ST_DWithin(ST_GeogFromText('SRID=4326;POINT(" + location.getLatitude() + "," + location.getLongitude() + ")'), geography(latlon), 12070)", client);
+        //CartoDBResponse<Map<String, Object>> res = makeQuery("SELECT * FROM table WHERE ST_DWithin(ST_GeogFromText('SRID=4326;POINT(" + location.getLatitude() + "," + location.getLongitude() + ")'), geography(latlon), 12070)", client);
+        CartoDBResponse<Map<String, Object>> res = makeQuery("select * from listings", client);
+        if (res == null){
+            System.out.println("There is nothing in the table");
+        }
         //12070 meters is roughly five miles
         /*List<Map<String, Object>> rows = res.getRows();
         for (Map map: rows){
             result.add(map);
         }*/
-        return res.getRows();
+        System.out.println(res.getTotal_rows());
+        return res;
     }
     
     public static ArrayList<Listing> getListings(Location location, CartoDBClientIF client){
-        ArrayList<Listing> result = null;
-        List<Map<String, Object>> res = getListingsQuery(location, client);
-        for (Map<String, Object> map: res){
-            System.out.println(map.get("location").getClass());
+        List<Listing> result = null;
+        CartoDBResponse<Map<String, Object>> res = getListingsQuery(location, client);
+        List<Map<String, Object>> rows = res.getRows();
+        for (int i = 0; i <= ){
+            System.out.println("getting map");
+            Object get = map.get("location");
+            System.out.println(get.getClass());
             //Listing listing = new Listing((String)map.get("name"), (String)map.get("price"), );
             //result.add();
         }

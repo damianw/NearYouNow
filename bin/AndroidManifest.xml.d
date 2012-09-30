@@ -1,2 +1,2 @@
-/Users/damian/Desktop/new2/NearYouNow/bin/AndroidManifest.xml : \
-/Users/damian/Desktop/new2/NearYouNow/AndroidManifest.xml \
+C:\Users\Jonathan\Documents\GitHub\NearYouNow\bin\AndroidManifest.xml : \
+C:\Users\Jonathan\Documents\GitHub\NearYouNow\AndroidManifest.xml \
